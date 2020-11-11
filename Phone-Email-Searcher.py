@@ -3,10 +3,10 @@
 
 import pyperclip, re
 
-Phone =re.compile(r'''(
-((\+\d\d) | (0) | (00\d\d))        #Land Code or Without (Belgium)
+phone =re.compile(r'''(
+((\+\d\d) | (00\d\d))?        #Land Code or Without (Belgium)
 ( )?                    #Potential Space after Land code
-(\d{3})                 #First 3 digits
+((0)?\d{3})             #First 3 digits with or without 0
 (\s|-|\.)?              #Potential whitespace or other character
 (\d{2})                 #2 digits
 (\s|-|\.)?              #Potential whitespace or other character
@@ -15,7 +15,7 @@ Phone =re.compile(r'''(
 (\d{2})                 #2 digits
 )''', re.VERBOSE) 
 
-Email=re.compile(r'''(
+email=re.compile(r'''(
     [a-zA-z0-9._%+-]+            #First Words
     @                            #@ Symbol   
     [a-zA-z0-9._%+-]+            #Domain
@@ -23,3 +23,15 @@ Email=re.compile(r'''(
 )''',re.VERBOSE)            
 
 text= str(pyperclip.paste())
+emailMatches=[]
+phoneMatches=[]
+for groups in email.findall(text):
+    emailMatches.append(groups[0])
+for groups in phone.findall(text):
+    if groups[1]==' ':
+        ' '.join([groups[2]])
+    elif groups[9]==' ':
+        ' '.join([])
+    else:
+        ' '.join([])
+
