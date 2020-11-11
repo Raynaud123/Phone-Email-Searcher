@@ -2,7 +2,7 @@
 #Script to find Phone Numbers(Europe) and email addresses on the clipboard
 
 import pyperclip, re
-
+#Making the regex for the phonenumbers and for the email
 phone =re.compile(r'''(
 ((\+\d\d) | (00\d\d))?        #Land Code or Without (Belgium)
 ( )?                    #Potential Space after Land code
@@ -21,7 +21,7 @@ email=re.compile(r'''(
     [a-zA-z0-9._%+-]+            #Domain
     (\.[a-zA-z]{2,4})            #Dot-Something
 )''',re.VERBOSE)            
-
+#Reading the text and returning the values in a appropiate matter
 text= str(pyperclip.paste())
 emailMatches=[]
 phoneMatches=[]
