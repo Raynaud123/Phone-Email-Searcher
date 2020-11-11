@@ -28,10 +28,10 @@ phoneMatches=[]
 for groups in email.findall(text):
     emailMatches.append(groups[0])
 for groups in phone.findall(text):
-    if groups[1]==' ':
-        ' '.join([groups[2]])
-    elif groups[9]==' ':
-        ' '.join([])
-    else:
-        ' '.join([])
+    if groups[8]==None:
+        ' '.join([groups[1],groups[3],groups[5],groups[7]])
+    elif groups[1]==' ':
+        ' '.join([groups[2],groups[4],groups[6],groups[8]])
+    elif groups[2]==' ':
+        ' '.join([groups[1],groups[3],groups[5],groups[7],groups[9]])
 
