@@ -1,7 +1,9 @@
-#! python3
+#!python3
+#Script from the book Automate the Boring Stuff with Python 
 #Script to find Phone Numbers(Europe) and email addresses on the clipboard
 
 import pyperclip, re
+
 #Making the regex for the phonenumbers and for the email
 phone=re.compile(r'''(
 ((\+\d\d)|(00\d\d))?        #Land Code or Without (Belgium)
@@ -21,7 +23,9 @@ email=re.compile(r'''(
     @                            #@ Symbol   
     [a-zA-z0-9._%+-]+            #Domain
     (\.[a-zA-z]{2,4})            #Dot-Something
-)''',re.VERBOSE)            
+)''',re.VERBOSE)  
+
+
 #Reading the text and returning the values in a appropiate matter
 text= str(pyperclip.paste())
 emailMatches=[]
@@ -34,6 +38,7 @@ for groups in phone.findall(text):
     else:
         phoneMatches.append(' '.join([groups[5],groups[8],groups[10],groups[12]]))
     #control mechanism
+    
 #Pasting all the Matches onto the clipboard 
 pyperclip.copy("The emails are: "+ "\n" +"\n".join(emailMatches) +  "\n" + "The phoneNumbers are: " + "\n" + "\n".join(phoneMatches))
 
